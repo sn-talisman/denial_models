@@ -1,0 +1,57 @@
+taxonomy_version: "1.0"
+categories:
+  eligibility_coverage:
+    description: "Patient eligibility or coverage issues"
+    carc_codes: [1, 2, 3, 27, 29, 31, 32, 33, 38, 96, 181, 197, 198, 199, 200]
+    keywords: ["eligibility", "coverage", "not covered", "inactive", "terminated"]
+    
+  authorization:
+    description: "Prior authorization or referral issues"
+    carc_codes: [15, 38, 55, 56, 60, 76, 243, 244]
+    keywords: ["authorization", "prior auth", "referral", "precertification"]
+    
+  coding_errors:
+    description: "Invalid, incorrect, or mismatched coding"
+    carc_codes: [4, 5, 6, 11, 16, 18, 50, 51, 52, 53, 58, 146, 147, 148, 149, 150, 151, 152]
+    keywords: ["invalid code", "coding", "modifier", "mismatch", "inconsistent"]
+    
+  medical_necessity:
+    description: "Lack of medical necessity documentation"
+    carc_codes: [50, 54, 55, 56, 57, 58, 59, 150, 167, 208, 243]
+    keywords: ["medical necessity", "not medically necessary", "experimental"]
+    
+  duplicate_claim:
+    description: "Duplicate or overlapping claims"
+    carc_codes: [18, 22, 23, 39]
+    keywords: ["duplicate", "already adjudicated", "overlap"]
+    
+  timely_filing:
+    description: "Claim filed outside timely filing window"
+    carc_codes: [29, 95]
+    keywords: ["timely filing", "late", "deadline", "filing limit"]
+    
+  bundling_unbundling:
+    description: "Services bundled or should be billed differently"
+    carc_codes: [59, 97, 151]
+    keywords: ["bundled", "inclusive", "component", "CCI edit"]
+    
+  missing_information:
+    description: "Missing or incomplete claim information"
+    carc_codes: [6, 16, 32, 252, 253, 254, 255, 256, 257, 258, 259, 260]
+    keywords: ["missing", "incomplete", "required field", "additional information"]
+
+  coordination_of_benefits:
+    description: "COB or other insurance primary"
+    carc_codes: [22, 23, 24, 25, 26]
+    keywords: ["other insurance", "COB", "primary payer", "coordination"]
+
+  contractual:
+    description: "Contractual or fee schedule adjustments"
+    carc_codes: [45, 94, 237, 238, 242]
+    keywords: ["contractual", "fee schedule", "allowed amount", "non-participating"]
+
+  other:
+    description: "Does not clearly fit other categories"
+    carc_codes: []
+    keywords: []
+

@@ -1,0 +1,45 @@
+# Global Configuration for Healthcare Denial Management Platform
+
+database:
+  url: "${DATABASE_URL}"
+  pool_size: 10
+  max_overflow: 20
+  pool_timeout: 30
+  echo: false  # Set to true for SQL query logging (dev only)
+
+repository:
+  type: "${REPOSITORY_TYPE}"  # "database" or "fhir"
+  
+llm:
+  base_url: "${OLLAMA_BASE_URL}"
+  model: "${OLLAMA_MODEL}"
+  temperature: "${OLLAMA_TEMPERATURE}"
+  max_tokens: "${OLLAMA_MAX_TOKENS}"
+  timeout: 60
+
+model:
+  storage_path: "${MODEL_STORAGE_PATH}"
+  version_format: "v{version}_{timestamp}"
+  
+features:
+  storage_path: "${FEATURE_STORAGE_PATH}"
+  historical_window_days: "${HISTORICAL_WINDOW_DAYS}"
+  target_encoding_min_samples: "${TARGET_ENCODING_MIN_SAMPLES}"
+
+logging:
+  level: "${LOG_LEVEL}"
+  format: "${LOG_FORMAT}"  # "json" or "text"
+  phi_redaction: "${REDACT_PHI_IN_LOGS}"
+
+api:
+  host: "${API_HOST}"
+  port: "${API_PORT}"
+  reload: "${API_RELOAD}"
+  title: "Healthcare Denial Management API"
+  version: "0.1.0"
+
+pipeline:
+  batch_size: 1000
+  max_workers: 4
+  enable_validation: true
+

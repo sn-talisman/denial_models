@@ -1,0 +1,41 @@
+[
+  {
+    "claim_id": "test-claim-001",
+    "practice_id": "practice-001",
+    "payer_id": "payer-001",
+    "patient_id": "patient-001",
+    "provider_id": "provider-001",
+    "claim_number": "CLM-2024-001",
+    "status": "pending",
+    "service_date_from": "2024-01-15",
+    "service_date_to": "2024-01-15",
+    "submitted_date": "2024-01-20",
+    "adjudicated_date": null,
+    "total_billed_amount": 150.00,
+    "total_allowed_amount": null,
+    "total_paid_amount": null,
+    "is_secondary_claim": false,
+    "has_prior_auth": true,
+    "has_referral": false
+  },
+  {
+    "claim_id": "test-claim-002",
+    "practice_id": "practice-001",
+    "payer_id": "payer-002",
+    "patient_id": "patient-002",
+    "provider_id": "provider-001",
+    "claim_number": "CLM-2024-002",
+    "status": "denied",
+    "service_date_from": "2024-01-10",
+    "service_date_to": "2024-01-10",
+    "submitted_date": "2024-01-12",
+    "adjudicated_date": "2024-01-18",
+    "total_billed_amount": 200.00,
+    "total_allowed_amount": 0.00,
+    "total_paid_amount": 0.00,
+    "is_secondary_claim": false,
+    "has_prior_auth": false,
+    "has_referral": false
+  }
+]
+

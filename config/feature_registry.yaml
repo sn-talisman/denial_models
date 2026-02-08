@@ -1,0 +1,136 @@
+feature_registry_version: "1.0"
+
+features:
+  # -- Claim-level features --
+  primary_cpt_code:
+    type: categorical
+    cardinality: high
+    encoding: [target_encoding, betos_grouping]
+    modifiable: false
+    description: "Primary procedure code"
+    
+  primary_icd10:
+    type: categorical
+    cardinality: high
+    encoding: [target_encoding, ccs_grouping]
+    modifiable: false
+    description: "Primary diagnosis code"
+    
+  modifiers:
+    type: categorical_list
+    cardinality: medium
+    encoding: [one_hot]
+    modifiable: true   # Can recommend adding/removing modifiers
+    description: "Procedure modifiers (25, 59, etc.)"
+    
+  place_of_service:
+    type: categorical
+    cardinality: low
+    encoding: [one_hot]
+    modifiable: true   # Sometimes correctable
+    description: "Place of service code"
+    
+  billed_amount:
+    type: numeric
+    encoding: [raw, log_transform]
+    modifiable: false
+    description: "Total billed amount"
+    
+  units:
+    type: numeric
+    encoding: [raw]
+    modifiable: true
+    description: "Number of units billed"
+    
+  # -- Payer features --
+  payer_id:
+    type: categorical
+    cardinality: medium
+    encoding: [target_encoding]
+    modifiable: false
+    
+  plan_type:
+    type: categorical
+    cardinality: low
+    encoding: [one_hot]
+    modifiable: false
+    
+  # -- Practice/Provider features --
+  practice_id:
+    type: categorical
+    cardinality: low
+    encoding: [target_encoding]
+    modifiable: false
+    
+  provider_specialty:
+    type: categorical
+    cardinality: medium
+    encoding: [one_hot, target_encoding]
+    modifiable: false
+    
+  # -- Historical features (engineered) --
+  hist_denial_rate_cpt_payer:
+    type: numeric
+    encoding: [raw]
+    modifiable: false
+    description: "Historical denial rate for this CPT-payer combination"
+    
+  hist_denial_rate_practice:
+    type: numeric
+    encoding: [raw]
+    modifiable: false
+    description: "Practice-level historical denial rate"
+    
+  hist_denial_rate_provider:
+    type: numeric
+    encoding: [raw]
+    modifiable: false
+    description: "Provider-level historical denial rate"
+    
+  hist_denial_count_cpt_payer_90d:
+    type: numeric
+    encoding: [raw]
+    modifiable: false
+    description: "Number of denials for this CPT-payer combo in last 90 days"
+    
+  # -- Temporal features --
+  days_to_filing_deadline:
+    type: numeric
+    encoding: [raw]
+    modifiable: false
+    
+  day_of_week_submitted:
+    type: categorical
+    cardinality: low
+    encoding: [one_hot]
+    modifiable: false
+    
+  month_of_service:
+    type: categorical
+    cardinality: low
+    encoding: [cyclical]
+    modifiable: false
+
+  # -- Derived / boolean flags --
+  has_prior_auth:
+    type: boolean
+    encoding: [raw]
+    modifiable: true  # Can recommend obtaining prior auth
+    description: "Whether prior authorization was obtained"
+    
+  has_referral:
+    type: boolean
+    encoding: [raw]
+    modifiable: true
+    
+  is_secondary_claim:
+    type: boolean
+    encoding: [raw]
+    modifiable: false
+    
+  diagnosis_procedure_match_score:
+    type: numeric
+    encoding: [raw]
+    modifiable: false
+    description: "Score indicating how commonly this DX-CPT pair appears together"
+
