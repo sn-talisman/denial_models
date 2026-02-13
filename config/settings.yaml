@@ -5,7 +5,7 @@ database:
   pool_size: 10
   max_overflow: 20
   pool_timeout: 30
-  echo: false  # Set to true for SQL query logging (dev only)
+  echo: true  # Set to true for SQL query logging (dev only)
 
 repository:
   type: "${REPOSITORY_TYPE}"  # "database" or "fhir"

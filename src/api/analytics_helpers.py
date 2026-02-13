@@ -131,13 +131,36 @@ def get_performance_insights(practice_data: pd.DataFrame) -> dict:
     denied = practice_data['is_denied'].sum()
     denied_rate = denied / total if total > 0 else 0
     
-    # Calculate payment ratio insights
-    if 'payment_ratio' in practice_data.columns:
-        avg_payment_ratio = practice_data['payment_ratio'].mean()
-        low_payment_claims = (practice_data['payment_ratio'] < 0.5).sum()
-        insights['trends']['avg_payment_ratio'] = float(avg_payment_ratio)
-        insights['trends']['low_payment_claims'] = int(low_payment_claims)
-        insights['trends']['low_payment_pct'] = float(low_payment_claims / total) if total > 0 else 0.0
+    # Calculate daily denial trends (for frontend chart)
+    if 'service_date' in practice_data.columns and 'is_denied' in practice_data.columns:
+        # Group by service date to get daily denial rates
+        # Filter out rows with invalid dates if necessary
+        daily_data = practice_data[practice_data['service_date'].notna()].copy()
+        
+        if not daily_data.empty:
+            daily_stats = daily_data.groupby('service_date').agg({
+                'is_denied': ['sum', 'count']
+            })
+            
+            # Flatten columns
+            daily_stats.columns = ['denied_count', 'total_count']
+            daily_stats['denial_rate'] = daily_stats['denied_count'] / daily_stats['total_count']
+            
+            # Sort by date
+            daily_stats = daily_stats.sort_index()
+            
+            # Populate trends dict {date_str: rate_float}
+            insights['trends'] = {
+                str(date): float(row['denial_rate']) 
+                for date, row in daily_stats.iterrows()
+            }
+            
+            # Add payment metrics to a separate key if needed (not used by current frontend)
+            if 'payment_ratio' in practice_data.columns:
+                insights['payment_metrics'] = {
+                    'avg_payment_ratio': float(practice_data['payment_ratio'].mean()),
+                    'low_payment_claims': int((practice_data['payment_ratio'] < 0.5).sum())
+                }
     
     # Identify high-risk payers
     if 'payer_name' in practice_data.columns:

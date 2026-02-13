@@ -4,6 +4,7 @@ from typing import Optional
 from fastapi import APIRouter, HTTPException, Depends
 import pandas as pd
 import structlog
+import os
 from pathlib import Path
 
 from src.api.schemas import (
@@ -27,7 +28,7 @@ def get_predictor() -> DenialPredictor:
     """Get or create predictor instance."""
     global _predictor
     if _predictor is None:
-        model_path = Path("models/denial_predictor_lightgbm.pkl")
+        model_path = Path(os.getenv("DENIAL_MODEL_PATH", "models/denial_predictor_lightgbm.pkl"))
         if not model_path.exists():
             raise HTTPException(
                 status_code=503,

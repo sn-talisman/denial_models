@@ -44,7 +44,7 @@ class FHIRClaimsRepository(ClaimsRepository):
         date_from: Optional[date] = None,
         date_to: Optional[date] = None,
         status: Optional[str] = None,
-        limit: int = 1000,
+        limit: Optional[int] = None,
         offset: int = 0,
     ) -> list[Claim]:
         """Retrieve claims from FHIR server."""

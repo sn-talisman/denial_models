@@ -35,7 +35,7 @@ class ClaimsRepository(ABC):
         date_from: Optional[date] = None,
         date_to: Optional[date] = None,
         status: Optional[str] = None,  # "denied", "rejected", "paid", "pending"
-        limit: int = 1000,
+        limit: Optional[int] = None,
         offset: int = 0,
     ) -> list[Claim]:
         """Retrieve claims with optional filters.
