@@ -44,7 +44,7 @@ async def evaluate_model():
     model_path = Path("models/denial_predictor_lightgbm.pkl")
     if not model_path.exists():
         print(f"❌ Model not found: {model_path}")
-        print("   Please train the model first: python scripts/train_model_with_env.py")
+        print("   Please train the model first: python scripts/train_model.py")
         sys.exit(1)
     
     print("=" * 60)

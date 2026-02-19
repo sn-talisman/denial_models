@@ -16,21 +16,21 @@ async def test_repository_factory():
 
 
 @pytest.mark.asyncio
+@pytest.mark.integration
 async def test_get_practices_stub():
-    """Test get_practices method (stub implementation)."""
+    """Test get_practices method (requires database connection)."""
     repo = get_repository("database")
     practices = await repo.get_practices()
-    # Currently returns empty list (stub)
     assert isinstance(practices, list)
     await repo.close()
 
 
 @pytest.mark.asyncio
+@pytest.mark.integration
 async def test_get_payers_stub():
-    """Test get_payers method (stub implementation)."""
+    """Test get_payers method (requires database connection)."""
     repo = get_repository("database")
     payers = await repo.get_payers()
-    # Currently returns empty list (stub)
     assert isinstance(payers, list)
     await repo.close()
 

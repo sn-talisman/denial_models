@@ -1,5 +1,1 @@
-"""FastAPI service layer for predictions and analytics.
-
-NOT YET IMPLEMENTED - Phase 2
-"""
-
+"""FastAPI service layer for predictions and analytics."""
